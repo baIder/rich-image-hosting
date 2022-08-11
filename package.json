@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26",
+    "mobx": "^6.6.1",
     "styled-components": "^5.3.5"
   }
 }

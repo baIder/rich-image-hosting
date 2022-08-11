@@ -1,4 +1,5 @@
 import React, {lazy, Suspense} from 'react';
+import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import {Routes, Route} from 'react-router-dom';
@@ -10,17 +11,19 @@ const About = lazy(() => import('./pages/About'));
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header/>
-      <Suspense fallback={<Loading/>}>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/history" element={<History/>}/>
-          <Route path="/about" element={<About/>}/>
-        </Routes>
-      </Suspense>
+      <main>
+        <Suspense fallback={<Loading/>}>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/history" element={<History/>}/>
+            <Route path="/about" element={<About/>}/>
+          </Routes>
+        </Suspense>
+      </main>
       <Footer/>
-    </div>
+    </>
   );
 }
 

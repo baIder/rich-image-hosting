@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import {Routes, Route} from 'react-router-dom';
 import Loading from './components/Loading';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const Home = lazy(() => import('./pages/Home'));
 const History = lazy(() => import('./pages/History'));
@@ -19,6 +21,8 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/history" element={<History/>}/>
             <Route path="/about" element={<About/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
           </Routes>
         </Suspense>
       </main>

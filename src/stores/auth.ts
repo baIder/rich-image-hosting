@@ -1,26 +1,35 @@
-import {action, observable} from 'mobx';
+import {makeAutoObservable} from 'mobx';
+
+type User = {
+  username: string,
+  password: string
+}
 
 class AuthStore {
-  @observable isLogin = false;
-  @observable isLoading = false;
-  @observable values = {
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  isLogin: boolean = false;
+  isLoading: boolean = false;
+  values: User = {
     username: '',
     password: '',
   };
 
-  @action setIsLogin(isLogin: boolean) {
+  setIsLogin = (isLogin: boolean) => {
     this.isLogin = isLogin;
   };
 
-  @action setUsername(username: string) {
+  setUsername = (username: string) => {
     this.values.username = username;
   };
 
-  @action setPassword(password: string) {
+  setPassword = (password: string) => {
     this.values.password = password;
   };
 
-  @action login() {
+  login = () => {
     console.log('登录中...');
     this.isLoading = true;
     setTimeout(() => {
@@ -28,9 +37,9 @@ class AuthStore {
       this.isLogin = true;
       this.isLoading = false;
     }, 1000);
-  }
+  };
 
-  @action register() {
+  register = () => {
     console.log('注册中...');
     this.isLoading = true;
     setTimeout(() => {
@@ -38,11 +47,11 @@ class AuthStore {
       this.isLogin = true;
       this.isLoading = false;
     }, 1000);
-  }
+  };
 
-  @action logout() {
+  logout = () => {
     console.log('已注销');
-  }
+  };
 }
 
 export default AuthStore;

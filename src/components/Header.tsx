@@ -23,11 +23,9 @@ const StyledLink = styled(NavLink)`
     border-bottom: 1px solid #fff;
   }
 `;
-
 const Login = styled.div`
   margin-left: auto;
 `;
-
 const StyledButton = styled(Button)`
   margin-left: 10px;
 `;
@@ -52,7 +50,6 @@ function Header() {
             <StyledButton type="primary">注册</StyledButton>
           </>
         }
-
       </Login>
     </StyledHeader>
   );

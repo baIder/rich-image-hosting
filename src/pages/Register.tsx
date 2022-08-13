@@ -1,8 +1,9 @@
-import {Button, Form, Input} from 'antd';
+import {Button, Form, Input, message} from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import {RuleObject} from 'rc-field-form/lib/interface';
 import {useStores} from '../stores';
+import {useNavigate} from 'react-router-dom';
 
 const Wrapper = styled.div`
   max-width: 600px;
@@ -18,14 +19,16 @@ const Title = styled.h1`
 `;
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
   const {AuthStore} = useStores();
   const onFinish = (values: User) => {
     AuthStore.setUsername(values.username);
     AuthStore.setPassword(values.password);
     AuthStore.register().then(() => {
-      console.log('注册成功，跳转登录页面');
+      navigate('/');
+      message.success('注册成功，为您跳转至首页', 2).then();
     }).catch(() => {
-      console.log('注册失败');
+      message.error('登录失败，请您稍后重试', 2).then();
     });
   };
 

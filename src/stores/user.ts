@@ -6,14 +6,14 @@ class UserStore {
     makeAutoObservable(this);
   }
 
-  currentUser: unknown = null;
+  currentUser: string = '';
 
   pullUser() {
-    this.currentUser = Auth.getCurrentUser();
+    this.currentUser = Auth.getCurrentUser().getUsername();
   }
 
   resetUser() {
-    this.currentUser = null;
+    this.currentUser = '';
   }
 
 }

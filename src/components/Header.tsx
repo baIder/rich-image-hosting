@@ -1,8 +1,9 @@
 import LogoURL from './logo.svg';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import {Button} from 'antd';
-import {useState} from 'react';
+import {useStores} from '../stores';
+import {observer} from 'mobx-react';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -32,7 +33,16 @@ const StyledButton = styled(Button)`
 
 
 function Header() {
-  const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
+  const {UserStore, AuthStore} = useStores();
+  const handleLogin = () => {
+    navigate('/login');
+  };
+  const handleLogout = () => {AuthStore.logout();};
+  const handleRegister = () => {
+    navigate('/register');
+  };
+
   return (
     <StyledHeader>
       <Logo src={LogoURL} alt=""/>
@@ -43,11 +53,12 @@ function Header() {
       </nav>
       <Login>
         {
-          isLogin ? <>
-            Username <StyledButton type="primary" onClick={() => setIsLogin(false)}>Logout</StyledButton>
+          UserStore.currentUser ? <>
+            Hello，{UserStore.currentUser}<StyledButton type="primary"
+                                                       onClick={handleLogout}>注销</StyledButton>
           </> : <>
-            <StyledButton type="primary" onClick={() => setIsLogin(true)}>登录</StyledButton>
-            <StyledButton type="primary">注册</StyledButton>
+            <StyledButton type="primary" onClick={handleLogin}>登录</StyledButton>
+            <StyledButton type="primary" onClick={handleRegister}>注册</StyledButton>
           </>
         }
       </Login>
@@ -55,5 +66,5 @@ function Header() {
   );
 }
 
-export default Header;
+export default observer(Header);
 

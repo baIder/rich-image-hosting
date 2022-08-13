@@ -26,7 +26,7 @@ const Register: React.FC = () => {
     AuthStore.setPassword(values.password);
     AuthStore.register().then(() => {
       navigate('/');
-      message.success('注册成功，为您跳转至首页', 2).then();
+      message.success('注册成功，已为您跳转至首页', 2).then();
     }).catch(() => {
       message.error('登录失败，请您稍后重试', 2).then();
     });

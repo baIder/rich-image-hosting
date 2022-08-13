@@ -1,4 +1,5 @@
 import {makeAutoObservable} from 'mobx';
+import Auth from '../models';
 
 type User = {
   username: string,
@@ -10,17 +11,11 @@ class AuthStore {
     makeAutoObservable(this);
   }
 
-  isLogin: boolean = false;
-  isLoading: boolean = false;
   values: User = {
     username: '',
     password: '',
   };
-
-  setIsLogin = (isLogin: boolean) => {
-    this.isLogin = isLogin;
-  };
-
+  
   setUsername = (username: string) => {
     this.values.username = username;
   };
@@ -30,27 +25,23 @@ class AuthStore {
   };
 
   login = () => {
-    console.log('登录中...');
-    this.isLoading = true;
-    setTimeout(() => {
-      console.log('登录成功');
-      this.isLogin = true;
-      this.isLoading = false;
-    }, 1000);
+    return new Promise((resolve, reject) => {
+      Auth.login(this.values.username, this.values.password).then(user => {
+        console.log('登录成功');
+        resolve(user);
+      }).catch(error => {
+        console.log('登录失败');
+        reject(error);
+      });
+    });
   };
 
   register = () => {
-    console.log('注册中...');
-    this.isLoading = true;
-    setTimeout(() => {
-      console.log('注册成功');
-      this.isLogin = true;
-      this.isLoading = false;
-    }, 1000);
+    Auth.register(this.values.username, this.values.password).then().catch();
   };
 
   logout = () => {
-    console.log('已注销');
+    Auth.logout();
   };
 }
 

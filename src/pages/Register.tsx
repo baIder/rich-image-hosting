@@ -2,6 +2,7 @@ import {Button, Form, Input} from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import {RuleObject} from 'rc-field-form/lib/interface';
+import {useStores} from '../stores';
 
 const Wrapper = styled.div`
   max-width: 600px;
@@ -17,12 +18,15 @@ const Title = styled.h1`
 `;
 
 const Register: React.FC = () => {
+  const {AuthStore} = useStores();
   const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+    AuthStore.setUsername(values.username);
+    AuthStore.setPassword(values.password);
+    AuthStore.register().then(() => {
+      console.log('注册成功，跳转登录页面');
+    }).catch(() => {
+      console.log('注册失败');
+    });
   };
 
   const validateUsername = (rule: RuleObject, value: string) => {
@@ -49,7 +53,6 @@ const Register: React.FC = () => {
         wrapperCol={{span: 12}}
         initialValues={{remember: true}}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item

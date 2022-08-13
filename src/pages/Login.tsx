@@ -2,6 +2,7 @@ import {Button, Form, Input} from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import {RuleObject} from 'rc-field-form/lib/interface';
+import {useStores} from '../stores';
 
 const Wrapper = styled.div`
   max-width: 600px;
@@ -17,12 +18,11 @@ const Title = styled.h1`
 `;
 
 const Login: React.FC = () => {
+  const {AuthStore} = useStores();
   const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+    AuthStore.setUsername(values.username);
+    AuthStore.setPassword(values.password);
+    AuthStore.login().then(() => {console.log('登录成功，跳转至首页');}).catch(() => {console.log('登录失败');});
   };
 
   const validateUsername = (rule: RuleObject, value: string) => {
@@ -40,7 +40,6 @@ const Login: React.FC = () => {
         wrapperCol={{span: 12}}
         initialValues={{remember: true}}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item

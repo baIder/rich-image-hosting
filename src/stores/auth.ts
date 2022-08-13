@@ -1,5 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import Auth from '../models';
+import UserStore from './user';
 
 class AuthStore {
   constructor() {
@@ -22,10 +23,10 @@ class AuthStore {
   login = () => {
     return new Promise((resolve, reject) => {
       Auth.login(this.values.username, this.values.password).then(user => {
-        console.log('登录成功');
+        UserStore.pullUser();
         resolve(user);
       }).catch(error => {
-        console.log('登录失败');
+        UserStore.resetUser();
         reject(error);
       });
     });
@@ -34,10 +35,10 @@ class AuthStore {
   register = () => {
     return new Promise((resolve, reject) => {
       Auth.register(this.values.username, this.values.password).then(user => {
-        console.log('注册成功');
+        UserStore.pullUser();
         resolve(user);
       }).catch(error => {
-        console.log('注册失败');
+        UserStore.resetUser();
         reject(error);
       });
     });
@@ -45,7 +46,8 @@ class AuthStore {
 
   logout = () => {
     Auth.logout();
+    UserStore.resetUser();
   };
 }
 
-export default AuthStore;
+export default new AuthStore();

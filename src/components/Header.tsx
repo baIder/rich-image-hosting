@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {Button} from 'antd';
 import {useStores} from '../stores';
 import {observer} from 'mobx-react';
+import React from 'react';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -32,7 +33,7 @@ const StyledButton = styled(Button)`
 `;
 
 
-function Header() {
+const Header: React.FC = () => {
   const navigate = useNavigate();
   const {UserStore, AuthStore} = useStores();
   const handleLogin = () => {
@@ -64,7 +65,7 @@ function Header() {
       </Login>
     </StyledHeader>
   );
-}
+};
 
 export default observer(Header);
 

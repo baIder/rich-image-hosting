@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React from 'react';
 
 const StyledFooter = styled.footer`
   padding: 10px 100px;
@@ -7,13 +8,13 @@ const StyledFooter = styled.footer`
   color: #aaa;
 `;
 
-function Footer() {
+const Footer: React.FC = () => {
   return (
     <>
       <StyledFooter>Footer</StyledFooter>
     </>
   );
-}
+};
 
 export default Footer;
 

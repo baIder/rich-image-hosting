@@ -19,7 +19,7 @@ const Title = styled.h1`
 
 const Login: React.FC = () => {
   const {AuthStore} = useStores();
-  const onFinish = (values: any) => {
+  const onFinish = (values: User) => {
     AuthStore.setUsername(values.username);
     AuthStore.setPassword(values.password);
     AuthStore.login().then(() => {console.log('登录成功，跳转至首页');}).catch(() => {console.log('登录失败');});

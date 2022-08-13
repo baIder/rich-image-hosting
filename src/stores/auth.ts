@@ -1,11 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import Auth from '../models';
 
-type User = {
-  username: string,
-  password: string
-}
-
 class AuthStore {
   constructor() {
     makeAutoObservable(this);
@@ -45,7 +40,7 @@ class AuthStore {
         console.log('注册失败');
         reject(error);
       });
-    })
+    });
   };
 
   logout = () => {

@@ -1,5 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {Uploader} from '../models';
+import AV from 'leancloud-storage';
 
 class ImageStore {
   constructor() {
@@ -9,7 +10,7 @@ class ImageStore {
   filename: string = '';
   file: any = null;
   isUploading: boolean = false;
-  serverFile: any = null;
+  serverFile?: AV.Object;
 
   setFilename(newFilename: string) {
     this.filename = newFilename;

@@ -35,7 +35,7 @@ const Uploader = {
     item.set('filename', filename);
     item.set('owner', AV.User.current());
     item.set('url', avFile);
-    return new Promise((resolve, reject) => {
+    return new Promise<AV.Object>((resolve, reject) => {
       item.save().then(serverFile => resolve(serverFile), error => reject(error));
     });
   }

@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {useStores} from '../stores';
 import {message, Upload} from 'antd';
 import type {UploadProps} from 'antd';

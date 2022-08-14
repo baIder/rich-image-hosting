@@ -25,7 +25,6 @@ a {
   min-height: 100vh;
 }
 
-main {
+.ant-row {
   flex: 1;
-  padding: 30px 100px;
 }

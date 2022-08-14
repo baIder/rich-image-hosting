@@ -24,6 +24,10 @@ class ImageStore {
     this.serverFile = serverFile;
   }
 
+  changeIsUploading() {
+    this.isUploading = !this.isUploading;
+  }
+
   upload() {
     this.isUploading = true;
     return new Promise((resolve, reject) => {
@@ -33,7 +37,7 @@ class ImageStore {
           resolve(serverFile);
         })
         .catch(error => reject(error))
-        .finally(() => this.isUploading = false);
+        .finally(() => this.changeIsUploading());
     });
   }
 

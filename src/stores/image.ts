@@ -28,8 +28,13 @@ class ImageStore {
     this.isUploading = !this.isUploading;
   }
 
+  clearServerFile() {
+    this.serverFile = new AV.Object();
+  }
+
   upload() {
     this.isUploading = true;
+    this.clearServerFile();
     return new Promise((resolve, reject) => {
       Uploader.add(this.file, this.filename)
         .then(serverFile => {

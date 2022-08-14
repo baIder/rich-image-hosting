@@ -93,7 +93,7 @@ const Uploader: React.FC = () => {
         </Dragger>
       </Spin>
       {
-        ImageStore.serverFile ? <Result>
+        ImageStore.serverFile && ImageStore.serverFile.attributes.filename ? <Result>
           <H1>上传结果</H1>
           <dl>
             <dt>图片地址：</dt>

@@ -28,7 +28,7 @@ const Register: React.FC = () => {
       navigate('/');
       message.success('注册成功，已为您跳转至首页', 2).then();
     }).catch(() => {
-      message.error('登录失败，请您稍后重试', 2).then();
+      message.error('注册失败，请您稍后重试', 2).then();
     });
   };
 

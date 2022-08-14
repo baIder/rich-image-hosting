@@ -20,12 +20,16 @@ class ImageStore {
     this.file = newFile;
   }
 
+  setServerFile(serverFile: AV.Object) {
+    this.serverFile = serverFile;
+  }
+
   upload() {
     this.isUploading = true;
     return new Promise((resolve, reject) => {
       Uploader.add(this.file, this.filename)
         .then(serverFile => {
-          this.serverFile = serverFile;
+          this.setServerFile(serverFile);
           resolve(serverFile);
         })
         .catch(error => reject(error))

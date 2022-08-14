@@ -61,9 +61,8 @@ const Uploader: React.FC = () => {
       ImageStore.setFile(file);
       ImageStore.setFilename(file.name);
       ImageStore.upload()
-        .then((serverFile) => {
+        .then(() => {
           message.success('上传成功').then();
-          console.log(serverFile);
         })
         .catch(() => message.error('上传失败').then());
       return false;
@@ -107,7 +106,8 @@ const Uploader: React.FC = () => {
                 <Input addonBefore="高度" addonAfter="px" placeholder="输入自定义的高度（可选）" allowClear onChange={changeHeight}/>
               </Space>
             </dd>
-            <dd>{store.fullStr}</dd>
+            <dt>处理后的图片地址：</dt>
+            <dd><a target="_blank" href={store.fullStr} rel="noreferrer">{store.fullStr}</a></dd>
           </dl>
         </Result> : null
       }

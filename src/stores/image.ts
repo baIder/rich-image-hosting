@@ -46,6 +46,11 @@ class ImageStore {
     });
   }
 
+  reset() {
+    this.isUploading = false;
+    this.clearServerFile()
+  }
+
 }
 
 export default new ImageStore();

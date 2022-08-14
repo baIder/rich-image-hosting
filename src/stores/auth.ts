@@ -1,6 +1,8 @@
 import {makeAutoObservable} from 'mobx';
 import {Auth} from '../models';
 import UserStore from './user';
+import HistoryStore from './history';
+import ImageStore from './image';
 
 class AuthStore {
   constructor() {
@@ -47,6 +49,8 @@ class AuthStore {
   logout = () => {
     Auth.logout();
     UserStore.resetUser();
+    HistoryStore.reset();
+    ImageStore.reset();
   };
 }
 

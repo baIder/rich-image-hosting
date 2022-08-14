@@ -20,12 +20,7 @@ const HistoryList: React.FC = () => {
   };
   useEffect(() => {
     loadMoreData();
-  }, []);
-
-  useEffect(() => {
-    console.log('组件加载');
     return () => {
-      console.log('组件卸载');
       HistoryStore.reset();
     };
   }, []);

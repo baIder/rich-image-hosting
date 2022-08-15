@@ -11,28 +11,24 @@ import styled from 'styled-components';
 
 const Home = lazy(() => import('./pages/Home'));
 const History = lazy(() => import('./pages/History'));
-const StyledRow = styled(Row)`
-  flex: 1
-`;
+
 
 const App: React.FC = () => {
   return (
     <>
       <Header/>
-      <StyledRow>
-        <Col span={20} offset={2}>
-          <main>
-            <Suspense fallback={<Loading/>}>
-              <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/history" element={<History/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/register" element={<Register/>}/>
-              </Routes>
-            </Suspense>
-          </main>
-        </Col>
-      </StyledRow>
+
+      <main>
+        <Suspense fallback={<Loading/>}>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/history" element={<History/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
+          </Routes>
+        </Suspense>
+      </main>
+
       <Row>
         <Col span={24}>
           <Footer/>

@@ -13,6 +13,11 @@ const Img = styled(Image)`
   border: 1px solid #eee;
 `;
 
+const SpinWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const HistoryList: React.FC = () => {
   const {HistoryStore} = useStores();
   const loadMoreData = () => {
@@ -30,7 +35,7 @@ const HistoryList: React.FC = () => {
       <div
         id="scrollableDiv"
         style={{
-          height: '70vh',
+          height: '75vh',
           overflow: 'auto',
           padding: '0 16px',
           border: '1px solid rgba(140, 140, 140, 0.35)',
@@ -40,7 +45,7 @@ const HistoryList: React.FC = () => {
           dataLength={HistoryStore.list.length}
           next={loadMoreData}
           hasMore={!HistoryStore.isLoading && HistoryStore.hasMore}
-          loader={<Spin/>}
+          loader={<SpinWrapper><Spin/></SpinWrapper>}
           endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
           scrollableTarget="scrollableDiv"
         >

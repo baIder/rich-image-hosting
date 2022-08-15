@@ -10,7 +10,7 @@ type TipsProps = {
 const TipsDiv = styled.div`
   background: orange;
   padding: 10px;
-  margin: 30px 0;
+  margin-bottom: 30px;
   color: white;
   border-radius: 4px;
 `;

@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import {observer} from 'mobx-react';
 import {useStores} from '../stores';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {Divider, List, Spin} from 'antd';
+import {Divider, Image, List, Spin} from 'antd';
 import AV from 'leancloud-storage';
 import styled from 'styled-components';
 
-const Img = styled.img`
+const Img = styled(Image)`
   width: 100px;
   height: 120px;
   object-fit: contain;
@@ -30,7 +30,7 @@ const HistoryList: React.FC = () => {
       <div
         id="scrollableDiv"
         style={{
-          height: 400,
+          height: '70vh',
           overflow: 'auto',
           padding: '0 16px',
           border: '1px solid rgba(140, 140, 140, 0.35)',

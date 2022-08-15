@@ -8,18 +8,23 @@ import React from 'react';
 
 const StyledHeader = styled.header`
   display: flex;
-
   align-items: center;
   padding: 10px;
   background: #02101f;
   color: #fff;
 `;
 const Logo = styled.img`
-  height: 30px
+  height: 30px;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 const StyledLink = styled(NavLink)`
   color: #fff;
   margin-left: 30px;
+  @media (max-width: 500px) {
+    margin-left: 10px;
+  }
 
   &.active {
     border-bottom: 1px solid #fff;
@@ -50,7 +55,6 @@ const Header: React.FC = () => {
       <nav>
         <StyledLink to="/">首页</StyledLink>
         <StyledLink to="/history">上传历史</StyledLink>
-        <StyledLink to="/about">关于我</StyledLink>
       </nav>
       <Login>
         {

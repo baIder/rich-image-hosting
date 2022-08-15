@@ -3,7 +3,7 @@ import React from 'react';
 import {Divider} from 'antd';
 
 const StyledFooter = styled.footer`
-  padding: 10px 100px;
+  padding-bottom: 10px;
   text-align: center;
   font-size: 12px;
   color: #aaa;
